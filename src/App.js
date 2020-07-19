@@ -1,14 +1,21 @@
-import React from 'react';
+import React,{Component}from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      name:'ABC'
+    };
+  }
+ render(){
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <h1>{this.state.name}</h1>
+          <button onClick={()=>{this.setState({name:'Welcome'})}}>Click Here</button>
         </p>
         <a
           className="App-link"
@@ -20,7 +27,8 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
+}
 }
 
 export default App;
