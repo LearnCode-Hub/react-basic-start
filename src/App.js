@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component}from 'react';
+import {StudentList} from './Components/Student-list/Student-Component';
 import './App.css';
 
-function App() {
+class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      employees :[]
+    };
+  }
+
+  componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(users => this.setState({employees:users}));
+  }
+ render(){
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <StudentList employees={this.state.employees}></StudentList>
       </header>
     </div>
-  );
+  )
+}
 }
 
 export default App;
